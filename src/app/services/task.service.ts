@@ -8,11 +8,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TaskService {
+  private api = 'http://localhost:5000/tasks'
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   getTasks(): Observable<Task[]> {
-    const tasks = of(TASKS);
-    return tasks;
+    return this.http.get<Task[]>(this.api);
   }
 }
